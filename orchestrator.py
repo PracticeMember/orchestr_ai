@@ -1,5 +1,5 @@
 from groq import Groq
-from config.app_config import LLM_MODEL
+# from config.app_config import LLM_MODEL
 import json
 import config.logging_config
 import logging
@@ -21,7 +21,7 @@ class Orchestrator:
 
     def _call_llm(self,messages):
         llm_tools=self.registry.get_llm_tools()
-        response=self.llm_client.generate(LLM_MODEL,llm_tools,messages)
+        response=self.llm_client.generate(llm_tools,messages)
         message=response.choices[0].message
         logger.info("Tool Calls : %s",message.tool_calls)
         if message.tool_calls:
@@ -42,7 +42,7 @@ class Orchestrator:
         
     def _call_llm_multiple_tools(self,messages):
         llm_tools=self.registry.get_llm_tools()
-        response=self.llm_client.generate(LLM_MODEL,llm_tools,messages)
+        response=self.llm_client.generate(llm_tools,messages)
         message=response.choices[0].message
         logger.info("Tool Calls : %s",message.tool_calls)
         if message.tool_calls:

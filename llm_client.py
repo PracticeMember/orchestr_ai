@@ -1,13 +1,14 @@
 from groq import Groq
-from config.app_config import GROQ_API_KEY
+# from config.app_config import GROQ_API_KEY
 
 class LLMClient:
-    def __init__(self):
+    def __init__(self,api_key,model):  
         self.client= Groq(
-            api_key=GROQ_API_KEY
+            api_key=api_key,
         )
+        self.model=model
     
-    def generate(self,model,tools,messages):
+    def generate(self,tools,messages):
         response=self.client.chat.completions.create(
             messages=messages,
             model=model,
