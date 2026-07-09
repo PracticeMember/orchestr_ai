@@ -11,7 +11,7 @@ class LLMClient:
     def generate(self,tools,messages):
         response=self.client.chat.completions.create(
             messages=messages,
-            model=model,
+            model=self.model,
             tools=tools,
             tool_choice="auto"
         )
